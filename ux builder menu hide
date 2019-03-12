@@ -1,0 +1,12 @@
+	// Get the current user
+    $user = wp_get_current_user();
+
+    // Check if user is a shop_manager or any role 
+    if ( isset( $user->roles[0] ) && $user->roles[0] == 'shop_manager' ) {
+		
+		// remove ux builder for shop manager
+		add_action( 'add_meta_boxes', function () {
+		remove_action( 'edit_form_top', 'ux_builder_edit_form_top' );
+		}, 20 );
+      
+    }
